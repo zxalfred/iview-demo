@@ -8,19 +8,19 @@
             <span class="title">iView Demo</span>
           </h3>
         </div>
-        <Form :model="loginForm" :rules="loginFormRules">
-          <FormItem prop="user">
-            <Input type="text" v-model="loginForm.user" placeholder="Username" size="large" autofocus>
+        <Form ref="loginForm" :model="loginForm" :rules="loginFormRules">
+          <FormItem prop="username">
+            <Input type="text" v-model="loginForm.username" placeholder="Username" size="large" on-enter="submitLogin" autofocus>
               <Icon type="ios-person-outline" slot="prepend"></Icon>
             </Input>
           </FormItem>
           <FormItem prop="password">
-            <Input type="password" v-model="loginForm.password" placeholder="password" size="large">
+            <Input type="password" v-model="loginForm.password" placeholder="password" size="large" on-enter="submitLogin">
               <Icon type="ios-lock-outline" slot="prepend"></Icon>
             </Input>
           </FormItem>
           <FormItem>
-            <Button size="large" type="success" :loading="isLoading" long>Sign in</Button>
+            <Button size="large" type="success" :loading="isLoading" @click="submitLogin" long>Sign in</Button>
           </FormItem>
         </Form>
       </Col>
@@ -33,7 +33,8 @@ export default {
   data() {
     return {
       loginForm: {
-        user: '',
+        username: '',
+        password: '',
       },
       loginFormRules: {
         user: [
@@ -46,7 +47,20 @@ export default {
       isLoading: false,
     };
   },
-  mounted() {
+  methods: {
+    submitLogin() {
+      this.$refs.loginForm.validate(async (valid) => {
+        if (valid) {
+          this.loading = true;
+          const result = await this.$service.login.login(this.loginForm);
+          if (result.result) {
+            this.$Message.success('登录成功');
+            this.$router.push('/home');
+          }
+        }
+        this.loading = false;
+      });
+    },
   },
 };
 </script>

@@ -1,6 +1,6 @@
 const API = {
   login: {
-    login: '/staffs/login',
+    login: '/v1/erplogin/checkLogin',
   },
 };
 

@@ -40,7 +40,7 @@ export default class BaseService {
       localStorage.token = '';
       store.commit('setToken', '');
       router.push('/login');
-      this.notice(result.data);
+      this.notice(result);
     }
     return result;
   }
