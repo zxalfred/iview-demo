@@ -23,6 +23,19 @@ export default new Router({
           name: 'Home',
           component: () => import('./views/Home.vue'),
         },
+        {
+          path: '/data',
+          name: 'Data',
+          component: () => import('./components/data/IndexData.vue'),
+          redirect: '/data/city',
+          children: [
+            {
+              path: 'city',
+              name: 'CityData',
+              component: () => import('./components/data/CityData.vue'),
+            },
+          ],
+        },
       ],
     },
     {

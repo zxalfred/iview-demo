@@ -1,12 +1,12 @@
 <template>
   <Header>
-    <Menu mode="horizontal" theme="dark" :active-name="nowPage">
+    <Menu mode="horizontal" theme="dark" :active-name="nowPage" @on-select="selectNav">
       <div class="layout-logo"></div>
       <div class="layout-nav">
         <Row type="flex" justify="end">
           <Col span="23">
-            <MenuItem v-for="(item, index) in mainNavList" :key="index" :name="item.title">
-              <router-link :to="item.to">{{ item.title }}</router-link>
+            <MenuItem v-for="(item, index) in mainNavList" :key="index" :name="item.to">
+              {{ item.title }}
             </MenuItem>
           </Col>
           <Col span="1">
@@ -79,7 +79,12 @@ export default {
   computed: {
     nowPage() {
       const pageName = this.mainNavList.find(item => item.to === `/${this.$route.path.split('/')[1]}`);
-      return (pageName && pageName.title) || '';
+      return (pageName && pageName.to) || '';
+    },
+  },
+  methods: {
+    selectNav(name) {
+      this.$router.push(name);
     },
   },
 };
