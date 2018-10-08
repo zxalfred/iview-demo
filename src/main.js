@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
-import '@/style/main.css';
 import service from '@/service/Service';
 import './plugins/axios';
 import App from './App';
