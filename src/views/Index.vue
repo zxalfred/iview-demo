@@ -1,10 +1,12 @@
 <template>
-  <div class="layout">
-    <Layout>
-      <PageHeader />
-      <router-view />
+    <Layout class="layout mh-100">
+      <Header>
+        <PageHeader />
+      </Header>
+      <Content class="page-content mh-100">
+        <router-view />
+      </Content>
     </Layout>
-  </div>
 </template>
 <script>
 import PageHeader from '@/components/common/PageHeader';
@@ -21,6 +23,8 @@ export default {
   background: #f5f7f9;
   position: relative;
   overflow: hidden;
-  width: 100%;
+}
+.page-content {
+  overflow: hidden;
 }
 </style>
