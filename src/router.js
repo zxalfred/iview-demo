@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from '@/store';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: '/app/',
   routes: [
@@ -44,3 +45,10 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  store.commit('setCrumbArr', []);
+  next();
+});
+
+export default router;

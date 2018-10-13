@@ -41,7 +41,6 @@ export default {
   },
   mounted() {
     const that = this;
-    this.$store.commit('setCrumbArr', []);
     this.siderContent.forEach((subItem) => {
       subItem.children.forEach((item) => {
         if (item.to === that.$route.path) {
