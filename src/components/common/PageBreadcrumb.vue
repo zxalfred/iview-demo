@@ -1,6 +1,6 @@
 <template>
   <Breadcrumb class="breadcrumb">
-    <BreadcrumbItem v-for="(item, index) in crumbItem" :to="item.to" :key="index">
+    <BreadcrumbItem v-for="(item, index) in fullCrumbItem" :to="item.to" :key="index">
       {{item.title}}
     </BreadcrumbItem>
   </Breadcrumb>
@@ -19,6 +19,13 @@ export default {
           },
         ];
       },
+    },
+  },
+  computed: {
+    fullCrumbItem() {
+      let subArr = this.$store.state.crumbArr;
+      subArr = subArr.map(value => ({ title: value }));
+      return this.crumbItem.concat(subArr);
     },
   },
 };

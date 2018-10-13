@@ -21,10 +21,9 @@ export default {
   },
   data() {
     return {
-      crumbList: [
+      crumbListHead: [
         {
-          title: '首页',
-          to: '/home',
+          title: '资料',
         },
       ],
       siderList: [
@@ -100,6 +99,11 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    crumbList() {
+      return this.crumbListHead;
+    },
   },
 };
 </script>

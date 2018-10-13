@@ -2,7 +2,7 @@
   <Menu ref="pageSider" theme="light" width="250px" :open-names="openName" :active-name="$route.path">
     <Submenu v-for="(submenu, subIndex) in siderContent" :key="subIndex" :name="submenu.title">
       <template slot="title">
-        <Icon type="ios-add-circle" />
+        <Icon type="md-add-circle" />
         {{ submenu.title }}
       </template>
       <MenuItem v-for="(menuItem, menuIndex) in submenu.children"
@@ -41,10 +41,12 @@ export default {
   },
   mounted() {
     const that = this;
+    this.$store.commit('setCrumbArr', []);
     this.siderContent.forEach((subItem) => {
       subItem.children.forEach((item) => {
         if (item.to === that.$route.path) {
           that.openNameSet = new Set().add(subItem.title);
+          this.$store.commit('setCrumbArr', [subItem.title, item.title]);
         }
       });
     });
