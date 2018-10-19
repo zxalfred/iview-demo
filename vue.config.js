@@ -4,7 +4,7 @@ module.exports = {
     port: 8081,
     proxy: {
       '/v1': {
-        target: 'https://xinspacrm.csmc-cloud.com',
+        target: 'http://xinspa.csmc-cloud.com',
         changeOrigin: true,
         pathRewrite: {
           '^/v1': '/v1',

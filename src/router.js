@@ -48,6 +48,20 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   store.commit('setCrumbArr', []);
+  if (to.path !== '/login') {
+    const token = store.state.token || localStorage.getItem('token') || '';
+    if (!token) {
+      Vue.prototype.$Notice.error({
+        title: '登录验证失败',
+        desc: '登录验证失败，请重新登录',
+      });
+      router.push('/login');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
   next();
 });
 

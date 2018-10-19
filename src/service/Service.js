@@ -1,11 +1,12 @@
 import BaseService from './services/BaseService';
 import LoginService from './services/LoginService';
-
+import DataService from './services/DataService';
 
 class Service {
   constructor() {
     this.base = new BaseService();
     this.login = new LoginService();
+    this.data = new DataService();
   }
 }
 

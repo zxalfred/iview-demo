@@ -1,23 +1,20 @@
 <template>
-  <Layout>
+  <Layout class="mh-100">
     <Sider hide-trigger :width="250">
       <PageSider :siderContent="siderList" />
     </Sider>
-    <Content>
-      <page-breadcrumb :crumbItem="crumbList" />
-      <router-view />
-    </Content>
+    <PageContent :crumbHead="crumbListHead" />
   </Layout>
 </template>
 
 <script>
-import PageBreadcrumb from '../common/PageBreadcrumb';
 import PageSider from '../common/PageSider';
+import PageContent from '../common/PageContent';
 
 export default {
   components: {
-    PageBreadcrumb,
     PageSider,
+    PageContent,
   },
   data() {
     return {
@@ -99,11 +96,6 @@ export default {
         },
       ],
     };
-  },
-  computed: {
-    crumbList() {
-      return this.crumbListHead;
-    },
   },
 };
 </script>
